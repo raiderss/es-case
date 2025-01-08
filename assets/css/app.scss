@@ -1,0 +1,1321 @@
+
+@mixin image($pos, $img, $size, $type, $class) {
+  position: $pos;
+  background-image: url($img);
+  background-size: $size;
+  background-repeat: $type;
+  background-position: $class;
+}
+
+@font-face {
+  font-family: 'Joyride';
+  src: url('../font/JoyrideALT.otf');
+}
+
+@font-face {
+  font-family: 'Joyride-2';
+  src: url('../font/JoyrideSTD.otf');
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../font/Gilroy-Light.ttf');
+}
+
+@mixin font($font, $style, $weight, $line) {
+  font-family: $font;
+  font-style: $style;
+  font-weight: $weight;
+  line-height: $line;
+}
+
+
+body {
+  user-select: none;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  @include image(absolute, '../images/background.svg', cover, no-repeat, center center);
+}
+
+
+.notify {
+  position: absolute;
+  width: 15.25rem;
+  height: 25.8125rem;
+  left: 33rem;
+  top: -10rem;
+  z-index: 99999;
+  -webkit-animation-name: zoomInUp;
+  animation-name: zoomInUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  filter: brightness(150%);
+  > h1 {
+    position: absolute;
+    font-size: 0.8rem;
+    text-align: center;
+    width: 20rem;
+    left: 2rem;
+    top: 13.7rem;
+    height: 2.25rem;
+    color: #3B5075;
+    @include font('Gilroy', normal, 400, 1.125rem);
+    > span {
+      position: absolute;
+      top: -1.6rem;
+      left:8.7rem;
+      width: 4rem;
+      text-align: center;
+      color: #FF4D4D;
+      filter: brightness(150%);
+      text-shadow: 0px 4px 13px rgba(255, 77, 77, 0.55);
+    }
+  }
+}
+
+
+@-webkit-keyframes zoomInUp {
+  0% {
+  opacity: 0;
+  -webkit-transform: scale3d(.1, .1, .1) translate3d(0, 1000px, 0);
+  transform: scale3d(.1, .1, .1) translate3d(0, 1000px, 0);
+  -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+  60% {
+  opacity: 1;
+  -webkit-transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+  transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+  -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  }
+  }
+  @keyframes zoomInUp {
+  0% {
+  opacity: 0;
+  -webkit-transform: scale3d(.1, .1, .1) translate3d(0, 1000px, 0);
+  transform: scale3d(.1, .1, .1) translate3d(0, 1000px, 0);
+  -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+  60% {
+  opacity: 1;
+  -webkit-transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+  transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+  -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  }
+  } 
+
+.header {
+  width: 16.625rem;
+  height: 8.625rem;
+  left: 3rem;
+  top: 0;
+  @include image(absolute, '../images/header.svg', contain, no-repeat, center center);
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  .info {
+    width: 17.6875rem;
+    height: 3.375rem;
+    margin-left: 15rem;
+    margin-top: 2.4rem;
+    @include font('Gilroy', normal, 0.9375rem, 1.125rem);
+    filter: brightness(130%);
+    background: linear-gradient(180deg, #3B5075 0%, #3B5075 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    > span {
+      background: linear-gradient(180deg, #f6ff00 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes fadeInRight {
+  0% {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  }
+  100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+  }
+  }
+  @keyframes fadeInRight {
+  0% {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  }
+  100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+  }
+  } 
+
+.user {
+  display:inline;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(110%);
+  .coins-icon {
+    left: 81.7rem;
+    top: 3.4rem;
+    width: 2.3125rem;
+    height: 2.3125rem;
+    @include image(absolute, '../icon/coins.svg', cover, no-repeat, center center);
+    > h1 {
+      position: absolute;
+      width: 9.5rem;
+      height: 1rem;
+      top: -0.5rem;
+      left: 0.1rem;
+      @include font('Gilroy',normal,400,1rem);
+      text-align: center;
+      font-size: 0.8125rem;
+      color: #FFFFFF;
+    }
+    > h2 {
+      position: absolute;
+      width: 3.1875rem;
+      height: 1.25rem;
+      top: 0.3rem;
+      left: 3.3rem;
+      text-align: center;
+      @include font('Gilroy', normal,600,1.25rem);
+      font-size: 1rem;
+      color: #F1D285;
+      filter: brightness(150%);
+    }
+  }
+  .gold-icon {
+    left: 92.5rem;
+    top: 3.4rem;
+    width: 2.3125rem;
+    height: 2.3125rem;
+    @include image(absolute, '../icon/gold.svg', cover, no-repeat, center center);
+    > h1 {
+      position: absolute;
+      width: 9.4rem;
+      height: 1rem;
+      top: -0.5rem;
+      filter: brightness(130%);
+      @include font('Gilroy',normal,400,1rem);
+      text-align: center;
+      font-size: 0.8125rem;
+      color: #FFFFFF;
+    }
+    > h2 {
+      position: absolute;
+      width: 3.1875rem;
+      height: 1.25rem;
+      top: 0.3rem;
+      left: 3.1rem;
+      text-align: center;
+      @include font('Gilroy', normal,600,1.25rem);
+      font-size: 1rem;
+      color: #F1D285;
+      filter: brightness(150%);
+    }
+  }
+  .add {
+    width: 5.25rem;
+    height: 5.25rem;
+    left: 100.5rem;
+    top: 1.93rem;
+    z-index: 1;
+    @include image(absolute, '../icon/add.svg', cover, no-repeat, center center);
+    &:hover {
+      transform: scale(.95);
+    }
+  }
+  .avatar {
+      position: absolute;
+      left: 111.2rem;
+      top: 0.7rem;
+      > h1 {
+        position: absolute;
+        width: 2.25rem;
+        height: 1rem;
+        top:2.25rem;
+        right: 7.9rem;
+        @include font('Gilroy', normal,400,1rem);
+        font-size: 0.8125rem;
+        color: #FFFFFF;
+        filter: brightness(130%);
+      }
+      > h2 {
+        position: absolute;
+        width: 5rem;
+        height: 1.25rem;
+        top: 3rem;
+        right: 8rem;
+        @include font('Gilroy',normal,600,1.25rem);
+        font-size: 1rem;
+        text-align: right;
+        background: linear-gradient(180deg, #4CFB0E 0%, #286412 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0px 4px 21px rgba(76, 251, 14, 0.25);
+        filter: brightness(130%);
+      }
+  }
+}
+
+
+.things {
+  position: absolute;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 88.5%;
+  height: 10rem;
+  top: 9.3rem;
+  left: 5rem;
+  z-index: 1;
+  &::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    opacity: 0
+  }
+  .border {
+    display: inline-block;
+    margin-left: 1.45rem;
+    width: 4.125rem;
+    height: 4.3875rem;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    filter: brightness(130%);
+    @include image(relative, '../images/red.svg', cover, no-repeat, center center);
+    &:hover {
+      transform: scale(.95);
+    }
+  .icon {
+    width: 2.4375rem;
+    height: 2rem;
+    @include image(absolute, '../icon/bag.svg', 95%, no-repeat, center center);
+  }
+  }
+}
+
+.case-open-info {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  left: 0rem;
+  top: 15.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(270deg, rgba(32, 38, 48, 0) 0%, rgba(72, 85, 109, 0.25) 50.24%, rgba(32, 38, 48, 0) 100%);
+  > h1 {
+    position: absolute;
+    width: 16.625rem;
+    height: 1.5rem;
+    @include font('Gilroy',normal,400,1.5rem);
+    font-size: 1.25rem;
+    text-align: center;
+    color: #FBB90E;
+    text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+  }
+  .give {
+    width: 3.125rem;
+    height: 1.875rem;
+    top: 16.1rem;
+    margin-left: -1rem;
+    @include image(relative, '../images/give.svg', cover, no-repeat, center center);
+  }
+}
+
+
+// -------------------------------------------------------
+.case-opening {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  left: 0rem;
+  top: 34.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(270deg, rgba(32, 38, 48, 0) 0%, rgba(72, 85, 109, 0.25) 50.24%, rgba(32, 38, 48, 0) 100%);
+  > h1 {
+    position: absolute;
+    width: 16.625rem;
+    height: 1.5rem;
+    @include font('Gilroy', normal,400, 1.5rem);
+    font-size: 1.25rem;
+    text-align: center;
+    color: #FBB90E;
+    text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+  }
+  .case {
+    width: 25.4375rem;
+    height: 19.125rem;
+    top: -19.5rem;
+    left: 31rem;
+    @include image(absolute, '../case/car.svg', cover, no-repeat, center center);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > h1 {
+      position: absolute;
+      width: 30.8125rem;
+      height: 2.1875rem;
+      left: 22.4rem;
+      top: 2.4rem;
+      @include font('Joyride-2', normal,400, 2.18755rem);
+      font-size: 2.25rem;
+      text-align: center;
+      color: #FBB90E;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+    > h2 {
+      position: absolute;
+      width: 17.6875rem;
+      height: 3.375rem;
+      left: 29.5rem;
+      top: 5.7rem;
+      @include font('Gilroy', normal,400,1.125rem);
+      font-size: 0.9375rem;
+      color: #3B5075;
+    }
+  }
+  .open {
+    width: 5.5rem;
+    height: 2.625rem;
+    left: 60.4rem;
+    top: -8.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include image(absolute, '../images/case-open.svg', contain, no-repeat, center center);
+    &:hover {
+      transform: scale(.95);
+    }
+      > h1 {
+        position: absolute;
+        width: 2.4375rem;
+        height: 1.125rem;
+        @include font('Gilroy', normal,400,1.125rem);
+        font-size: 0.9375rem;
+        text-align: center;
+        color: #FFFFFF;
+        text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+  }
+  .open-fast {
+    width: 7.375rem;
+    height: 2.625rem;
+    left: 66.5rem;
+    top: -8.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include image(absolute, '../images/case-fast.svg', contain, no-repeat, center center);
+    &:hover {
+      transform: scale(.95);
+    }
+    > h1 {
+      position: absolute;
+      width: 5.4375rem;
+      height: 1.125rem;
+      @include font('Gilroy', normal,400,1.125rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #FBB90E;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+  }
+  .gold {
+    width: 2.3125rem;
+    height: 2.3125rem;
+    left: 75.5rem;
+    top: -8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include image(absolute, '../icon/gold.svg', cover, no-repeat, center center);
+    > h1 {
+      position: absolute;
+      width: 5.4375rem;
+      height: 1.125rem;
+      left: 3.2rem;
+      top: -0.7rem;
+      @include font('Gilroy',normal,400,1rem);
+      font-size: 0.8125rem;
+      color: #FFFFFF;
+    }
+   > h2 {
+    position: absolute;
+    width: 5.4375rem;
+    height: 1.125rem;
+    left: 3.2rem;
+    top: 0.1rem;
+    @include font('Gilroy',normal,600,1.25rem);
+    font-size: 1rem;
+    color: #F1D285;
+   }
+  }
+}
+
+
+.case-opening-live {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 92%;
+  height: 26.5rem;
+  top: 39.1rem;
+  left: 6.1rem;
+  &::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    opacity: 0
+  }
+  .border {
+    display: inline-block;
+    width: 12.5rem;
+    height: 12.5rem;
+    margin-left: 0.7rem;
+    margin-top: 0.5rem;
+    @include image(relative, '../images/thing-border.svg', cover, no-repeat, center center);
+    &:hover {
+      transform: scale(.95);
+    }
+    .item {
+      width: 9.4375rem;
+      height: 7.0625rem;
+      left: 1.7rem;
+      top: 2rem;
+      @include image(absolute, '../items/bag.png', 80%, no-repeat, center center);
+    }
+    .label {
+      position: absolute;
+      width: 12.4rem;
+      height: 1.125rem;
+      top: 10.1rem;
+      @include font('Gilroy',normal,400,1.125rem);
+      font-size: 1rem;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+// ----------------------------------------------------------
+
+.case-item-info {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  left: 0rem;
+  top: 34.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(270deg, rgba(32, 38, 48, 0) 0%, rgba(72, 85, 109, 0.25) 50.24%, rgba(32, 38, 48, 0) 100%);
+  > h1 {
+    position: absolute;
+    width: 16.625rem;
+    height: 1.5rem;
+    @include font('Gilroy',normal,400,1.5rem);
+    font-size: 1.25rem;
+    text-align: center;
+    color: #FBB90E;
+    text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+  }
+}
+
+.open-cases {
+  position: absolute;
+  // overflow: auto;
+  overflow: hidden;
+  // white-space: nowrap;
+  width: 85%;
+  height: 13.5rem;
+  top: 19.1rem;
+  left: 6.5rem;
+  .cases {
+    width: 9999999999999999999px;
+    max-width: 999999999999999999px;
+    height: 100px;
+    margin-left: 0;
+    transition: all 8s cubic-bezier(.08,.6,0,1);
+  }
+    &::-webkit-scrollbar {
+      display: none;
+      visibility: hidden;
+      opacity: 0
+    }
+    .border {
+      display: inline-block;
+      width: 12.5rem;
+      height: 12.5rem;
+      margin-left: 0.7rem;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+      @include image(relative, '../images/thing-border.svg', cover, no-repeat, center center);
+      .item {
+        width: 9.4375rem;
+        height: 7.0625rem;
+        left: 1.7rem;
+        top: 2rem;
+        @include image(absolute, '../case/car.svg', cover, no-repeat, center center);
+      }
+      .label {
+        position: absolute;
+        width: 12.7rem;
+        height: 1.125rem;
+        left: -0.14rem;
+        top: 10.1rem;
+        @include font('Gilroy',normal,400,1.125rem);
+        font-size: 0.9375rem;
+        text-align: center;
+        color: #FFFFFF;
+        text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+      }
+    }
+}
+
+.case-inside {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 107.5rem;
+  height: 26.5rem;
+  top: 39.1rem;
+  left: 6.1rem;
+  &::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    opacity: 0
+  }
+  .border {
+    display: inline-block;
+    width: 12.5rem;
+    height: 12.5rem;
+    margin-left: 0.7rem;
+    margin-top: 0.5rem;
+    @include image(relative, '../images/thing-border.svg', cover, no-repeat, center center);
+    .item {
+      width: 9.4375rem;
+      height: 7.0625rem;
+      left: 1.7rem;
+      top: 2rem;
+      @include image(absolute, '../items/weapon_pistol.png', 80%, no-repeat, center center);
+    }
+    .label {
+      position: absolute;
+      width: 12.7rem;
+      height: 1.125rem;
+      left: -0.14rem;
+      top: 10.1rem;
+      @include font('Gilroy',normal,400,1.125rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+  }
+}
+
+.first-info {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  left: 0rem;
+  top: 15.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(270deg, rgba(32, 38, 48, 0) 0%, rgba(72, 85, 109, 0.25) 50.24%, rgba(32, 38, 48, 0) 100%);
+  -webkit-animation-name: fadeInLeftBig;
+  animation-name: fadeInLeftBig;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  > h1 {
+    position: absolute;
+    width: 11.625rem;
+    height: 1.5rem;
+    @include font('Gilroy',normal,400,1.5rem);
+    font-size: 1.25rem;
+    text-align: center;
+    color: #FBB90E;
+    text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    &:hover {
+      transform: scale(.95);
+    }
+  }
+}
+
+.last-info {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  top: 46.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(270deg, rgba(32, 38, 48, 0) 0%, rgba(72, 85, 109, 0.25) 50.24%, rgba(32, 38, 48, 0) 100%);
+  -webkit-animation-name: fadeInLeftBig;
+  animation-name: fadeInLeftBig;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  > h1 {
+    position: absolute;
+    width: 11.625rem;
+    height: 1.5rem;
+    @include font('Gilroy',normal,400,1.5rem);
+    font-size: 1.25rem;
+    text-align: center;
+    color: #FBB90E;
+    text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    &:hover {
+      transform: scale(.95);
+    }
+  }
+}
+
+
+  @-webkit-keyframes fadeInLeftBig {
+  0% {
+  opacity: 0;
+  -webkit-transform: translate3d(-2000px, 0, 0);
+  transform: translate3d(-2000px, 0, 0);
+  }
+  100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+  }
+  }
+  @keyframes fadeInLeftBig {
+  0% {
+  opacity: 0;
+  -webkit-transform: translate3d(-2000px, 0, 0);
+  transform: translate3d(-2000px, 0, 0);
+  }
+  100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+  }
+}
+
+.live-case {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 93%;
+  height: 26.5rem;
+  top: 19.1rem;
+  left: 6.1rem;
+  &::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    opacity: 0
+  }
+  .border {
+    position: relative;
+    display: inline-block;
+    width: 12.5rem;
+    height: 12.5rem;
+    margin-left: 0.7rem;
+    margin-top: 0.5rem;
+    @include image(relative, '../images/border.svg', cover, no-repeat, center center);
+    &:hover {
+      filter: brightness(150%);
+    }
+    .case {
+      width: 9.4375rem;
+      height: 7.0625rem;
+      left: 1.7rem;
+      top: 2rem;
+      @include image(absolute, '../case/car.svg', cover, no-repeat, center center);
+    }
+    .price {
+      width: 1.5625rem;
+      height: 1.5625rem;
+      left: 7.4rem;
+      top: 0.6rem;
+      @include image(absolute, '../icon/gold.svg', cover, no-repeat, center center);
+      > h1 {
+        position: absolute;
+        width: 2.375rem;
+        height: 0.9375rem;
+        top: -0.2rem;
+        left: 1.875rem;
+        @include font('Gilroy',normal,600,0.93755rem);
+        font-size: 0.75rem;
+        color: #F1D285;
+      }
+    }
+    .label {
+      position: absolute;
+      width: 7rem;
+      height: 2.125rem;
+      left: 0.1rem;
+      top: 10.1rem;
+      @include font('Gilroy',normal,400,1.1255rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .open {
+      box-sizing: border-box;
+      position: absolute;
+      width: 4.25rem;
+      height: 1.5rem;
+      left: 7.2875rem;
+      top: 10rem;
+      @include image(absolute, '../images/open.svg', cover, no-repeat, center center);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > h1 {
+        position: absolute;
+        @include font('Gilroy',normal,400,0.875rem);
+        font-size: 0.7813rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.55);
+        text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+      }
+    }
+  }
+}
+
+
+.standart-case {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 89%;
+  height: 13rem;
+  top: 50.1rem;
+  left: 6.1rem;
+  &::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    opacity: 0
+  }
+  .border {
+    position: relative;
+    display: inline-block;
+    width: 12.5rem;
+    height: 12.5rem;
+    margin-left: 0.7rem;
+    margin-top: 0.5rem;
+    @include image(relative, '../images/border.svg', cover, no-repeat, center center);
+    &:hover {
+      filter: brightness(130%);
+    }
+    .case {
+      width: 9.4375rem;
+      height: 7.0625rem;
+      left: 1.7rem;
+      top: 2rem;
+      @include image(absolute, '../case/car.svg', cover, no-repeat, center center);
+    }
+    .price {
+      width: 1.5625rem;
+      height: 1.5625rem;
+      left: 7.4rem;
+      top: 0.6rem;
+      @include image(absolute, '../icon/gold.svg', cover, no-repeat, center center);
+      > h1 {
+        position: absolute;
+        width: 2.375rem;
+        height: 0.9375rem;
+        top: -0.2rem;
+        left: 1.875rem;
+        @include font('Gilroy',normal,600,0.937rem);
+        font-size: 0.75rem;
+        color: #F1D285;
+      }
+    }
+    .label {
+      position: absolute;
+      width: 7.5rem;
+      height: 1.125rem;
+      left: -0.14rem;
+      top: 10.1rem;
+      @include font('Gilroy',normal,400,1.125rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+    .open {
+      box-sizing: border-box;
+      position: absolute;
+      width: 4.25rem;
+      height: 1.5rem;
+      left: 7.2875rem;
+      top: 10rem;
+      @include image(absolute, '../images/open.svg', cover, no-repeat, center center);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > h1 {
+        position: absolute;
+        @include font('Gilroy',normal,400,0.8755rem);
+        font-size: 0.7813rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.55);
+        text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+      }
+    }
+  }
+}
+
+.categories {
+  position: absolute;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 22.2rem;
+  height: 10rem;
+  top: 3.3rem;
+  left: 55rem;
+  display:inline-block;
+  align-items: center;
+  justify-content: center;
+  &::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    opacity: 0
+  }
+  .border {
+    display: inline-block;
+    margin-left: 1.45rem;
+    width: 9.625rem;
+    height: 2.625rem;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    filter: brightness(130%);
+    @include image(relative, '../images/standart.svg', 100%, no-repeat, center center);
+    &:hover {
+      transform: scale(.95);
+    }
+    > h1 {
+      position: absolute;
+      width: 6.5625rem;
+      height: 1.125rem;
+      @include font('Gilroy',normal,400,1.125rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+  }
+
+}
+
+.gold-page {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 75%;
+  height: 26.4rem;
+  top: 19rem;
+  left: 19.5rem;
+  &::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+    opacity: 0
+  }
+  .border {
+    position: relative;
+    display: inline-block;
+    width: 12.5rem;
+    height: 12.5rem;
+    margin-left: 0.9rem;
+    margin-top: 0.5rem;
+    @include image(relative, '../images/gold-border.svg', cover, no-repeat, center center);
+    .image {
+      width: 9.25rem;
+      height: 9.5rem;
+      left: 1.7rem;
+      top: 2rem;
+      @include image(absolute, '../icon/gold.svg', cover, no-repeat, center center);
+    }
+    .price {
+      position: absolute;
+      left: 7.4rem;
+      top: 0.6rem;
+      > h1 {
+        position: absolute;
+        width: 2.375rem;
+        height: 0.9375rem;
+        top: -0.2rem;
+        left: 1.875rem;
+        @include font('Gilroy',normal,600,0.9375rem);
+        font-size: 0.75rem;
+        color: #F1D285;
+      }
+    }
+    .label {
+      position: absolute;
+      width: 7.5rem;
+      height: 1.125rem;
+      left: -0.14rem;
+      top: 10.1rem;
+      @include font('Gilroy',normal,400,1.12rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+    .open {
+      box-sizing: border-box;
+      position: absolute;
+      width: 4.25rem;
+      height: 1.5rem;
+      left: 7.2875rem;
+      top: 10rem;
+      @include image(absolute, '../images/open.svg', cover, no-repeat, center center);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > h1 {
+        position: absolute;
+        @include font('Gilroy',normal,400,0.8752rem);
+        font-size: 0.7813rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.55);
+        text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+      }
+    }
+  }
+}
+
+
+.purchase {
+  position: absolute;
+  left: 20.5rem;
+  top: 45.375rem;
+  > h1 {
+    @include font('Joyride-2',normal,400,2.18752rem);
+    font-size: 2.25rem;
+    text-align: center;
+    color: #FBB90E;
+    text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+  }
+  > h2 {
+    position: absolute;
+    top: 3.5rem;
+    width: 30.375rem;
+    height: 2.25rem;
+    @include font('Gilroy',normal,400,0.1.125rem);
+    font-size: 0.9375rem;
+    color: #3B5075;
+  }
+  .code {
+    width: 15.3125rem;
+    height: 2.625rem;
+    top: 7.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include image(absolute, '../images/gold-input.svg', cover, no-repeat, center center);
+    > input {
+      outline: none;
+      border: none;
+      background: none;
+      color:white;
+      width: 1;
+      font-size: 1.5rem;
+      z-index: 1;
+      text-align: center;
+      @include font('Gilroy',normal,400,0.1.125rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.55);
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+  }
+  .accept {
+    width: 8.875rem;
+    height: 2.625rem;
+    left: 15.7rem;
+    top: 7.3rem;
+    @include image(absolute, '../images/accept.svg', cover, no-repeat, center center);
+    > h1 {
+      position: absolute;
+      left: 2.9rem;
+      top: 0.15rem;
+      @include font('Gilroy',normal,400,0.1.125rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+    }
+  }
+}
+
+
+
+.case-won {
+  width: 99.5%;
+  height: 99%;
+  top: -0.1%;
+  @include image(absolute, '../images/won-background.svg', cover, no-repeat, center center);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .won-image {
+    width: 34.3125rem;
+    height: 4rem;
+    top: 15rem;
+    @include image(absolute, '../images/won.svg', cover, no-repeat, center center);
+    > h1 {
+      position: absolute;
+      width: 32.9375rem;
+      height: 2.25rem;
+      top: 5rem;
+      left: 1rem;
+      @include font('Gilroy',normal,400,0.1.125rem);
+      font-size: 0.9375rem;
+      text-align: center;
+      color: #3B5075;
+    }
+    .border {
+      width: 12.5rem;
+      height: 12.5rem;
+      left: 11rem;
+      top: 11rem;
+      margin-left: 0.7rem;
+      margin-top: 0.5rem;
+      @include image(absolute, '../images/thing-border.svg', cover, no-repeat, center center);
+      .item {
+        width: 9.4375rem;
+        height: 7.0625rem;
+        left: 1.7rem;
+        top: 2.5rem;
+        @include image(absolute, '../items/weapon_pistol.png', 80%, no-repeat, center center);
+      }
+      .label {
+        position: absolute;
+        width: 12rem;
+        height: 2.125rem;
+        left: 0.1rem;
+        top: 10.1rem;
+        @include font('Gilroy',normal,400,0.1.125rem);
+        font-size: 0.9375rem;
+        text-align: center;
+        color: #FFFFFF;
+        text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .collect {
+        width: 5.5rem;
+        height: 2.625rem;
+        top: 14.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include image(absolute, '../images/collect.svg', cover, no-repeat, center center);
+        > h1 {
+          position: absolute;
+            width: 3.125rem;
+            height: 1.125rem;
+            @include font('Gilroy',normal,400,0.1.125rem);
+            font-size: 0.9375rem;
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+          }
+        }
+        .sell {
+          width: 7.375rem;
+          height: 2.625rem;
+          left: 6.5rem;
+          top: 14.4rem;
+          @include image(absolute, '../images/sell.svg', cover, no-repeat, center center);
+          > h1 {
+            position: absolute;
+            width: 1.5rem;
+            height: 1.125rem;
+            left: 1rem;
+            top: 0.15rem;
+            @include font('Gilroy',normal,400,0.1.125rem);
+            font-size: 0.9375rem;
+            text-align: center;
+            color: #FBB90E;
+            text-shadow: 0px 0px 33px rgba(251, 185, 14, 0.25);
+          }
+          > h2 {
+            position: absolute;
+            width: 3.4375rem;
+            height: 0.875rem;
+            left: 3.35rem;
+            top: 0.3rem;
+            @include font('Gilroy',normal,400,0.0.8755rem);
+            font-size: 0.75rem;
+            text-align: center;
+            color: #493709;
+            text-shadow: 0px 0px 33px;
+            filter: brightness(50%);
+          }
+        }
+    }
+  }
+}
+
+
+html {
+  font-size: 16.0px;
+}
+
+@media screen and (width: 3440px) and (height: 1440px) {
+  html {
+    font-size: 21.5px;
+  }
+  .live-case {left: 15rem}
+  .standart-case { left: 15rem}
+  .things {left: 18rem}
+}
+
+@media screen and (width: 4096px) and (height: 2160px) {
+  html {
+    font-size: 31px;
+  }
+}
+
+@media screen and (width: 2560px) and (height: 1440px) {
+  html {
+    font-size: 21.5px;
+  }
+}
+
+@media screen and (width: 1920px) and (height: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (width: 1920px) and (height: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (width: 1920px) and (height: 1440px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (width: 1600px) and (height: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (width: 1440px) and (height: 900px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (width: 1680px) and (height: 1050px) {
+  html {
+    font-size: 14.0px;
+  }
+}
+
+@media screen and (width: 1600px) and (height: 900px) {
+  html {
+    font-size: 13.3px;
+  }
+}
+
+@media screen and (width: 1600px) and (height: 1024px) {
+  html {
+    font-size: 13.3px;
+  }
+}
+
+@media screen and (width: 1768px) and (height: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media screen and (width: 1366px) and (height: 768px) {
+  html {
+    font-size: 11.3px;
+  }
+}
+@media screen and (width: 1400px) and (height: 1050px) {
+  html {
+    font-size: 11.7px;
+  }
+}
+@media screen and (width: 1280px) and (height: 1024px) {
+  html {
+    font-size: 11.7px;
+  }
+}
+@media screen and (width: 1280px) and (height: 720px) {
+  html {
+    font-size: 11px;
+  }
+}
+@media screen and (width: 1024px) and (height: 768px) {
+  html {
+    font-size: 10.05px;
+  }
+}
+@media screen and (width: 832px) and (height: 624px) {
+  html {
+    font-size: 8.05px;
+  }
+}
+
+@media screen and (width: 800px) and (height: 600px) {
+  html {
+    font-size: 8px;
+  }
+}

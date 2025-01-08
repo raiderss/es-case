@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>es-casesystem</title>
+      <link rel="stylesheet" href="../assets/css/app.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js" type="text/javascript"></script>
+   </head>
+   <div id="app" v-if='page.ui'>
+      <div class="header">
+         <div class="info">
+            You can go to <span>'eyestore.tebex.io'</span> to buy GC, or you can buy GC with your in-game bank money.
+         </div>
+      </div>
+      <div class="notify" v-if="notify.page">
+         <span>Notification</span>
+         <h1>
+            <span :style="{'color':`${notify.color}`, 'text-shadow':`${notify.shadow}`}" >{{notify.header}}</span>{{notify.message}}
+         </h1>
+      </div>
+      <div class="user">
+         <div class="coins-icon">
+            <h1>
+               Bank
+            </h1>
+            <h2>
+               {{FormatPrice(player.bank)}}$
+            </h2>
+         </div>
+         <div class="gold-icon">
+            <h1>
+               Gold
+            </h1>
+            <h2>
+               {{FormatPrice(player.gold)}}
+            </h2>
+         </div>
+         <div class="add" @click="Coins()"></div>
+         <div class="avatar">
+            <svg width="7.25rem" height="8.4375rem" viewBox="0 0 116 135" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g filter="url(#filter0_d_2232_11472)"> <path d="M52.002 23.4641C55.7148 21.3205 60.2891 21.3205 64.002 23.4641L88.375 37.5359C92.0878 39.6795 94.375 43.641 94.375 47.9282V76.0718C94.375 80.359 92.0878 84.3205 88.375 86.4641L64.002 100.536C60.2891 102.679 55.7148 102.679 52.002 100.536L27.6289 86.4641C23.9161 84.3205 21.6289 80.359 21.6289 76.0718V47.9282C21.6289 43.641 23.9161 39.6795 27.6289 37.5359L52.002 23.4641Z" fill="#4CFB0E" fill-opacity="0.05"/> <path d="M63.752 23.8971L88.125 37.9689C91.6831 40.0232 93.875 43.8196 93.875 47.9282V76.0718C93.875 80.1804 91.6831 83.9768 88.125 86.0311L63.752 100.103C60.1938 102.157 55.8101 102.157 52.252 100.103L27.8789 86.0311C24.3208 83.9768 22.1289 80.1804 22.1289 76.0718V47.9282C22.1289 43.8196 24.3208 40.0232 27.8789 37.9689L52.252 23.8971C55.8101 21.8428 60.1938 21.8428 63.752 23.8971Z" stroke="#4CFB0E"/> </g> <g filter="url(#filter1_d_2232_11472)"> <path d="M52.252 34.8971C55.8101 32.8428 60.1938 32.8428 63.752 34.8971L88.125 48.9689C91.6831 51.0232 93.875 54.8196 93.875 58.9282V87.0718C93.875 91.1804 91.6831 94.9768 88.125 97.0311L63.752 111.103C60.1938 113.157 55.8101 113.157 52.252 111.103L27.8789 97.0311C24.3208 94.9768 22.1289 91.1804 22.1289 87.0718V58.9282C22.1289 54.8196 24.3208 51.0232 27.8789 48.9689L52.252 34.8971Z" stroke="url(#paint0_radial_2232_11472)"/> </g>
+               <path d="M56.002 32.1547C57.2396 31.4402 58.7643 31.4402 60.002 32.1547L82.8487 45.3453C84.0863 46.0598 84.8487 47.3803 84.8487 48.8094V75.1906C84.8487 76.6197 84.0863 77.9402 82.8487 78.6547L60.002 91.8453C58.7643 92.5598 57.2396 92.5598 56.002 91.8453L33.1552 78.6547C31.9176 77.9402 31.1552 76.6197 31.1552 75.1906V48.8094C31.1552 47.3803 31.9176 46.0598 33.1552 45.3453L56.002 32.1547Z" fill="url(#pattern0)"/>
+               <defs>
+                <filter id="filter0_d_2232_11472" x="0.628906" y="0.855469" width="114.746" height="122.289" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"> <feFlood flood-opacity="0" result="BackgroundImageFix"/> <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/> <feOffset/> <feGaussianBlur stdDeviation="10.5"/> <feColorMatrix type="matrix" values="0 0 0 0 0.298039 0 0 0 0 0.984314 0 0 0 0 0.054902 0 0 0 0.25 0"/> <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2232_11472"/> <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2232_11472" result="shape"/> </filter> <filter id="filter1_d_2232_11472" x="0.628906" y="11.8555" width="114.746" height="122.289" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"> <feFlood flood-opacity="0" result="BackgroundImageFix"/> <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/> <feOffset/> <feGaussianBlur stdDeviation="10.5"/> <feColorMatrix type="matrix" values="0 0 0 0 0.984314 0 0 0 0 0.72549 0 0 0 0 0.054902 0 0 0 0.55 0"/> <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2232_11472"/> <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2232_11472" result="shape"/> </filter> <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1"> <use xlink:href="#image0_2232_11472" transform="translate(-0.0289634) scale(0.00304878)"/> </pattern> <radialGradient id="paint0_radial_2232_11472" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(58.002 89.5) rotate(90) scale(39)"> <stop stop-color="#4CFB0E"/> <stop offset="1" stop-color="#4CFB0E" stop-opacity="0"/> </radialGradient>
+                  <image id="image0_2232_11472" width="347px" height="328px" :xlink:href="`${avatar}`"/>
+               </defs>
+            </svg>
+            <h1>
+               Hello
+            </h1>
+            <h2>
+               {{player.name}}
+            </h2>
+         </div>
+      </div>
+      <div v-if="page.gold">
+         <div class="gold-page">
+            <div class="border" v-for="data in gold">
+               <div class="image"></div>
+               <div class="price">
+                  <h1>${{data.price}}</h1>
+               </div>
+               <div class="label">{{data.price}} Gold</div>
+               <div class="open "@click="GoldBuy(data)">
+                  <h1>Buy</h1>
+               </div>
+            </div>
+         </div>
+         <div class="purchase">
+            <h1>Special Code</h1>
+            <h2>If you have enough money in your bank, you can buy gold or you can buy gold from our tebex store. <span style="color:white;">eyestore.tebex.io</span></h2>
+            <div class="code">
+               <input v-model="key" placeholder="Type your code here" />
+            </div>
+            <div class="accept">
+               <h1 @click="Purchase()">Accept</h1>
+            </div>
+         </div>
+      </div>
+      <div v-if="page.rewards">
+         <div class="case-won">
+            <div class="won-image">
+               <h1>
+                  Some random text about description opencase system are there in few gucci words for everyone.
+               </h1>
+               <div class="border">
+                  <div class="item" :style="{'background-image': `url(./assets/items/${rewards.item}.png)`, 'background-size':`${rewards.size}%`}"></div>
+                  <div class="label">{{rewards.label}}</div>
+                  <div class="collect" @click="Collect()">
+                     <h1>Collect</h1>
+                  </div>
+                  <div class="sell" @click="SellRewards()">
+                     <h1>
+                        Sell
+                     </h1>
+                     <h2>
+                        {{rewards.sell}} GC
+                     </h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div v-if="page.open">
+         <div class="case-opening">
+            <h1>Items Inside case</h1>
+            <div class="case" :style="{'background-image': `url(./assets/case/${variable.background}.svg)`, 'background-size':`${variable.size}%`}">
+               <h1>{{variable.name}}</h1>
+               <h2>Some random text about description LoadCase system are there in few gucci words for everyone.</h2>
+            </div>
+            <div class="open">
+               <h1 @click="OpenCase()" >Open</h1>
+            </div>
+            <div class="open-fast">
+               <h1 @click="OpenFastCase()">Open Fast</h1>
+            </div>
+            <div class="gold">
+               <h1>Gold</h1>
+               <h2> {{FormatPrice(variable.price)}}</h2>
+            </div>
+         </div>
+         <div class="case-opening-live">
+            <!--KASA ACILIŞ YERI CIKABİLECEK ITEMLER EN ALT -->
+            <div class="border" v-for="data in open.items">
+               <div class="item" :style="{'background-image': `url(./assets/items/${data.item}.png)`, 'background-size':`${data.size}%`}"></div>
+               <div class="label">{{data.label}}</div>
+            </div>
+         </div>
+      </div>
+      <div v-if="page.case">
+         <!--KASA ACILIŞ YERI EŞYALAR -->
+         <div class="open-cases">
+            <div class="cases">
+            </div>
+         </div>
+         <div class="case-open-info">
+            <h1>
+               Case Name openning
+            </h1>
+            <div class="give"></div>
+         </div>
+         <div class="case-item-info">
+            <h1>
+               Items Inside case 
+            </h1>
+         </div>
+         <div class="case-inside">
+            <div class="border" v-for="data in open.items">
+               <div class="item" :style="{'background-image': `url(./assets/items/${data.item}.png)`, 'background-size':`${data.size}%`}"></div>
+               <div class="label">{{data.label}}</div>
+            </div>
+         </div>
+      </div>
+      <div class="things">
+         <div class="border" v-for="data in things" :style="{'background-image': `url(./assets/images/${data.border}.svg)`}">
+            <div class="icon" :style="{'background-image': `url(./assets/icon/${data.id}.svg)`}"></div>
+         </div>
+      </div>
+      <div class="first-info" v-if="page.home == true || page.gold == true">
+         <h1>
+            {{cases.name}}
+         </h1>
+      </div>
+      <div class="categories">
+         <div class="border" @click="NewPage(data)" v-for="data in categories" :style="{'background-image': `url(./assets/images/${data.border}.svg)`}">
+            <h1>
+               {{data.label}}
+            </h1>
+         </div>
+      </div>
+      <div v-if="page.home">
+         <div class="last-info">
+            <h1>
+               <span style="color: white;">Standart Cases</span> 
+            </h1>
+         </div>
+         <div class="live-case">
+            <div class="border" v-for="data in live.case" v-if="data.category === sellect || sellect === null">
+               <div class="case" :style="{'background-image': `url(./assets/case/${data.icon}.svg)`, 'background-size':`${data.size}%`}"></div>
+               <div class="price">
+                  <h1>{{FormatPrice(data.price)}}</h1>
+               </div>
+               <div class="label">{{data.label}}</div>
+               <div @click="LoadCase(data)" class="open">
+                  <h1>Open</h1>
+               </div>
+            </div>
+         </div>
+         <div class="standart-case">
+            <div class="border" v-for="data in live.standart">
+               <div class="case" :style="{'background-image': `url(./assets/case/${data.icon}.svg)`, 'background-size':`${data.size}%`}"></div>
+               <div class="price">
+                  <h1>{{FormatPrice(data.price)}}</h1>
+               </div>
+               <div class="label">{{data.label}}</div>
+               <div class="open" @click="LoadCase(data)">
+                  <h1>Open</h1>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> 
+   <script src="./assets/vue.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+   <script src="./web/vue.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js" type="text/javascript"></script>
+   </body>
+</html>
