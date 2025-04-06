@@ -190,49 +190,111 @@ elseif Config.Framework == "QBCore" or Config.Framework == "OLDQBCore" then
         end)
 
         RegisterNetEvent('give')
-        AddEventHandler('give', function(source, data)
-            local player = Framework.Functions.GetPlayer(source)
-            giveitem(data)
-        end)
+	AddEventHandler('give', function(source, data)
+	    if not source then return end
+	    
+	    if not data or type(data) ~= 'table' then
+	        print('^1[WARNING] Invalid data format')
+	        return
+	    end
+	
+	    if data.amount and tonumber(data.amount) <= 0 then
+	        print('^1[WARNING] Invalid amount value')
+	        return
+	    end
+	
+	    local player = Framework.GetPlayerFromId(source)
+	    if not player then
+	        print('^1[WARNING] Player not found')
+	        return
+	    end
+	
+	    giveitem(source, data)
+	end)
+	
+	function giveitem(source, Give)
+	    if not Give or not Give.item or not Give.type then
+	        print('^1[WARNING] Missing data')
+	        return
+	    end
+	
+	    Give.item = string.lower(Give.item)
+	    local player = Framework.GetPlayerFromId(source)
+	    
+	    if not player then
+	        print('^1[WARNING] Player not found')
+	        return
+	    end
+	
+	    if Give.type == 'car' then 
+	        local vehicleData = {}
+	        local plate = string.upper(GetRandomLetter(3) .. GetRandomNumber(3))
+	        vehicleData.model = GetHashKey(Give.item)
+	        vehicleData.plate = plate
+	
+	        local safeIdentifier = MySQL.escape.Identifier(player.identifier)
+	        local safePlate = MySQL.escape.Identifier(plate)
+	        local safeVehicleData = MySQL.escape.Identifier(json.encode(vehicleData))
+	
+	        ExecuteSql("INSERT INTO owned_vehicles (owner, plate, vehicle, type, stored) VALUES (?, ?, ?, 'car', 0)",
+	            {safeIdentifier, safePlate, safeVehicleData})
+	    end
+	
+	    if Give.type == 'item' then 
+	        local amount = tonumber(Give.amount) or 1
+	        if amount <= 0 then
+	            print('^1[WARNING] Invalid item amount')
+	            return
+	        end
+	        
+	        player.addInventoryItem(Give.item, amount)
+	    end
+	end
+
+        -- RegisterNetEvent('give')
+        -- AddEventHandler('give', function(source, data)
+        --     local player = Framework.Functions.GetPlayer(source)
+        --     giveitem(data)
+        -- end)
 
 
-        function giveitem(Give)
-            Give.item = string.lower(Give.item)
-            local Player = Framework.Functions.GetPlayer(source)
-            if Give.type == 'car' then 
-                local vehicleData = nil
-                vehicleData = {}
-                local vehicle = nil
-                local plate = nil
-                plate = string.upper(GetRandomLetter(3) .. GetRandomNumber(3))
-                vehicleData.model = GetHashKey(Give.item)
-                vehicleData.plate = plate
-                if Config.Garage == 'qb-garages' then 
-                local vehicleProps = {
-                    doorStatus = {},  
-                    tireBurstState = {},  
-                    windowStatus = {} 
-                }  
-                local modsJson = json.encode(vehicleProps)  
-                local vehicleHash = GetHashKey(Give.item) 
-                local query = "INSERT INTO player_vehicles (license, citizenid, plate, vehicle, hash, garage, state, mods) VALUES ('" 
-                .. Player.PlayerData.license .. "', '" 
-                .. Player.PlayerData.citizenid .. "', '" 
-                .. plate .. "', '" 
-                .. Give.item .. "', " 
-                .. vehicleHash .. ", 'pillboxgarage', 1, '"..modsJson.."')"
-                ExecuteSql(query)
-                else
-                local modsJson = json.encode(vehicleProps)  
-                local vehicleHash = GetHashKey(Give.item) 
-                ExecuteSql("INSERT INTO player_vehicles (license, citizenid, plate, vehicle, status, state) VALUES ('"..Player.PlayerData.license.."', '"..Player.PlayerData.citizenid.."', '"..plate.."', '"..json.encode(vehicleData).."', 'car', 0)")
-                end
+        -- function giveitem(Give)
+        --     Give.item = string.lower(Give.item)
+        --     local Player = Framework.Functions.GetPlayer(source)
+        --     if Give.type == 'car' then 
+        --         local vehicleData = nil
+        --         vehicleData = {}
+        --         local vehicle = nil
+        --         local plate = nil
+        --         plate = string.upper(GetRandomLetter(3) .. GetRandomNumber(3))
+        --         vehicleData.model = GetHashKey(Give.item)
+        --         vehicleData.plate = plate
+        --         if Config.Garage == 'qb-garages' then 
+        --         local vehicleProps = {
+        --             doorStatus = {},  
+        --             tireBurstState = {},  
+        --             windowStatus = {} 
+        --         }  
+        --         local modsJson = json.encode(vehicleProps)  
+        --         local vehicleHash = GetHashKey(Give.item) 
+        --         local query = "INSERT INTO player_vehicles (license, citizenid, plate, vehicle, hash, garage, state, mods) VALUES ('" 
+        --         .. Player.PlayerData.license .. "', '" 
+        --         .. Player.PlayerData.citizenid .. "', '" 
+        --         .. plate .. "', '" 
+        --         .. Give.item .. "', " 
+        --         .. vehicleHash .. ", 'pillboxgarage', 1, '"..modsJson.."')"
+        --         ExecuteSql(query)
+        --         else
+        --         local modsJson = json.encode(vehicleProps)  
+        --         local vehicleHash = GetHashKey(Give.item) 
+        --         ExecuteSql("INSERT INTO player_vehicles (license, citizenid, plate, vehicle, status, state) VALUES ('"..Player.PlayerData.license.."', '"..Player.PlayerData.citizenid.."', '"..plate.."', '"..json.encode(vehicleData).."', 'car', 0)")
+        --         end
 
-            end
-            if Give.type == 'item' then 
-                Player.Functions.AddItem(Give.item, 1)
-            end
-        end
+        --     end
+        --     if Give.type == 'item' then 
+        --         Player.Functions.AddItem(Give.item, 1)
+        --     end
+        -- end
 
 
 
